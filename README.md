@@ -1,1 +1,1 @@
-# vagrant-ubuntu-18.04
+# vagrant-ubuntu-20.04
