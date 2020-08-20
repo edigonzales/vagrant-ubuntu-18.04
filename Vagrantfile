@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 22, host: 20213, id: 'ssh'
+  config.vm.network "forwarded_port", guest: 22, host: 2020, id: 'ssh'
   
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -53,8 +53,8 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
     # Customize the amount of memory on the VM:
-    vb.memory = "4096"
-    vb.cpus = 2
+    vb.memory = "8192"
+    vb.cpus = 4 
     vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
   end
   #
@@ -76,11 +76,11 @@ Vagrant.configure("2") do |config|
     echo "Europe/Zurich" | tee /etc/timezone
     dpkg-reconfigure --frontend noninteractive tzdata
     apt-get update
-    #apt-get upgrade
+    apt-get upgrade
     apt-get install -y xauth zip unzip ifupdown fonts-liberation ftp vim
-    #add-apt-repository -y ppa:x2go/stable
-    #apt-get update
-    #apt-get install -y x2goserver x2goserver-xsession
-    #apt-get install -y xfce4 xfce4-whiskermenu-plugin xfce4-terminal thunar-archive-plugin gedit
+    add-apt-repository -y ppa:x2go/stable
+    apt-get update
+    apt-get install -y x2goserver x2goserver-xsession
+    DEBIAN_FRONTEND=noninteractive apt-get install -y xubuntu-core xfce4-whiskermenu-plugin xfce4-terminal thunar-archive-plugin gedit
     SHELL
 end
