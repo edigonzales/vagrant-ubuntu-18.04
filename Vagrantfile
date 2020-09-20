@@ -77,10 +77,16 @@ Vagrant.configure("2") do |config|
     dpkg-reconfigure --frontend noninteractive tzdata
     apt-get update
     apt-get upgrade
-    apt-get install -y xauth zip unzip ifupdown fonts-liberation ftp vim
+    apt-get install -y xauth zip unzip ifupdown fonts-liberation ftp vim git
     add-apt-repository -y ppa:x2go/stable
     apt-get update
     apt-get install -y x2goserver x2goserver-xsession
+    apt install -y gnupg software-properties-common
+    wget -qO - https://qgis.org/downloads/qgis-2020.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+    chmod a+r /etc/apt/trusted.gpg.d/qgis-archive.gpg
+    add-apt-repository "deb https://qgis.org/debian `lsb_release -c -s` main"
+    apt update
+    apt install -y qgis
     DEBIAN_FRONTEND=noninteractive apt-get install -y xubuntu-core xfce4-whiskermenu-plugin xfce4-terminal thunar-archive-plugin gedit
     SHELL
 end
